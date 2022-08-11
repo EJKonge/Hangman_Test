@@ -41,15 +41,17 @@ class Hangman:
 
 def play_game(word_list):
     game = Hangman(word_list, num_lives=5)
-    while game.num_lives > 0 and game.num_letters > 0:
-        game.ask_letter()
-        print(f"Your guesses so far: {' '.join(game.word_guessed)}")
-        print(f"You have {game.num_lives} lives remaining, and you've got {game.num_letters} letters left to guess.")
-    if game.num_letters == 0:
-        print("Congratulations you won!")
-    else:
-        print("You ran out of lives. The word was " + game.word)
-    pass
+    while True:
+        if game.num_lives == 0: 
+            print("You ran out of lives. The word was " + game.word) 
+            break
+        elif game.num_letters > 0:
+            game.ask_letter()
+            print(f"Your guesses so far: {' '.join(game.word_guessed)}")
+            print(f"You have {game.num_lives} lives remaining, and you've got {game.num_letters} letters left to guess.")
+        else: 
+            print("Congratulations, you won!")
+            break
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
